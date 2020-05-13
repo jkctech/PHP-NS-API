@@ -41,9 +41,9 @@
 		 * Either a station abbreviation or a UIC code is required. 
 		 *
 		 * @param string $station Station by NS abbreviation/code (e.g. hdr or asd)
-		 * @param string $uicCode Station by UIC code (84xxxxx)
+		 * @param string|integer $uicCode Station by UIC code (84xxxxx)
 		 * @param string $dateTime (Optional) Datetime in RFC3339
-		 * @param integer $maxJourneys (Optional) Number of departures or arrivals to return
+		 * @param string|integer $maxJourneys (Optional) Number of departures or arrivals to return
 		 * @param string $lang (Optional) Language to translate in, note that not all messages are translated [nl|en]
 		 * @param string $source (Optional) Forces to use a certain source
 		 * 
@@ -51,7 +51,7 @@
 		 *
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getArrivals(string $station = null, string $uicCode = null, string $dateTime = null, int $maxJourneys = null, string $lang = null, string $source = null)
+		public function getArrivals(string $station = null, mixed $uicCode = null, string $dateTime = null, mixed $maxJourneys = null, string $lang = null, string $source = null)
 		{
 			$params = array_filter(array(
 				"station" => $station,
@@ -74,7 +74,7 @@
 		 *
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getCalamities(string $lang = nulll)
+		public function getCalamities(string $lang = null)
 		{
 			$params = array_filter(array(
 				"lang" => $lang
@@ -88,9 +88,9 @@
 		 * Either a station abbreviation or a UIC code is required. 
 		 *
 		 * @param string $station Station by NS abbreviation/code (e.g. hdr or asd)
-		 * @param string $uicCode Station by UIC code (84xxxxx)
+		 * @param string|integer $uicCode Station by UIC code (84xxxxx)
 		 * @param string $dateTime (Optional) Datetime in RFC3339
-		 * @param integer $maxJourneys (Optional) Number of departures or arrivals to return
+		 * @param string|integer $maxJourneys (Optional) Number of departures or arrivals to return
 		 * @param string $lang (Optional) Language to translate in, note that not all messages are translated [nl|en]
 		 * @param string $source (Optional) Forces to use a certain source
 		 * 
@@ -98,7 +98,7 @@
 		 *
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getDepartures(string $station = null, string $uicCode = null, string $dateTime = null, int $maxJourneys = null, string $lang = null, string $source = null)
+		public function getDepartures(string $station = null, mixed $uicCode = null, string $dateTime = null, mixed $maxJourneys = null, string $lang = null, string $source = null)
 		{
 			$params = array_filter(array(
 				"station" => $station,
@@ -152,15 +152,15 @@
 		 * Get exitside for the given parameters.
 		 * Result will either be LEFT, RIGHT or UNKNOWN.
 		 *
-		 * @param string $originUicCode Station by UIC code (84xxxxx)
-		 * @param string $uicCode Station by UIC code (84xxxxx)
-		 * @param string $track Tracknumber
+		 * @param string|integer $originUicCode Station by UIC code (84xxxxx)
+		 * @param string|integer $uicCode Station by UIC code (84xxxxx)
+		 * @param string|integer $track Tracknumber
 		 * 
 		 * @return object
 		 *
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getExitSide(string $originUicCode, string $uicCode, string $track)
+		public function getExitSide(mixed $originUicCode, mixed $uicCode, mixed $track)
 		{
 			$params = array_filter(array(
 				"originUicCode" => $originUicCode,
@@ -174,15 +174,15 @@
 		/**
 		 * Get international pricing from station A to station B.
 		 * 
-		 * @param string $fromStation The from station stationcode, short name, middle name, long name, UIC code or varcode
-		 * @param string $toStation The to station stationcode, short name, middle name, long name, UIC code or varcode
+		 * @param string|integer $fromStation The from station stationcode, short name, middle name, long name, UIC code or varcode
+		 * @param string|integer $toStation The to station stationcode, short name, middle name, long name, UIC code or varcode
 		 * @param string $plannedFromTime Datetime in RFC3339
 		 * 
 		 * @return object
 		 * 
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getInternationalPrice(string $fromStation, string $toStation, string $plannedFromTime)
+		public function getInternationalPrice(mixed $fromStation, mixed $toStation, string $plannedFromTime)
 		{
 			$params = array_filter(array(
 				"fromStation" => $fromStation,
@@ -197,24 +197,24 @@
 		 * Get pricing from station A to station B.
 		 * Provide EITHER a CTXRecon or a toStation AND fromStation.
 		 * 
-		 * @param string $fromStation The from station stationcode, short name, middle name, long name, UIC code or varcode
-		 * @param string $toStation The to station stationcode, short name, middle name, long name, UIC code or varcode
+		 * @param string|integer $fromStation The from station stationcode, short name, middle name, long name, UIC code or varcode
+		 * @param string|integer $toStation The to station stationcode, short name, middle name, long name, UIC code or varcode
 		 * @param string $ctxRecon CTXRecon string
 		 * @param string $plannedFromTime (Optional) Planned departure time in RFC3339
 		 * @param string $plannedArrivalTime (Optional) Planned arrival time in RFC3339
-		 * @param integer $travelClass (Optional) First or second class travel [1|2]
+		 * @param string|integer $travelClass (Optional) First or second class travel [1|2]
 		 * @param string $travelType (Optional) [single|return]
-		 * @param integer $adults (Optional) Number of adults to take into account
-		 * @param integer $children (Optional) Number of children to take into account
-		 * @param string $routeId (Optional) Filter trip by routeId
+		 * @param string|integer $adults (Optional) Number of adults to take into account
+		 * @param string|integer $children (Optional) Number of children to take into account
+		 * @param string|integer $routeId (Optional) Filter trip by routeId
 		 * 
 		 * @return object
 		 * 
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getPrice(string $fromStation = null, string $toStation = null, string $ctxRecon = null,
-			string $plannedFromTime = null, string $plannedArrivalTime = null, int $travelClass = null, string $travelType = null,
-			int $adults = null, int $children = null, string $routeId = null)
+		public function getPrice(mixed $fromStation = null, mixed $toStation = null, string $ctxRecon = null,
+			string $plannedFromTime = null, string $plannedArrivalTime = null, mixed $travelClass = null, string $travelType = null,
+			mixed $adults = null, mixed $children = null, mixed $routeId = null)
 		{
 			$params = array_filter(array(
 				"fromStation" => $fromStation,
@@ -235,13 +235,13 @@
 		/**
 		 * Get disruptions at a specific station.
 		 *
-		 * @param string $code Stationcode or UICcode
+		 * @param string|integer $code Stationcode or UICcode
 		 * 
 		 * @return object
 		 * 
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getStationDisruption(string $code)
+		public function getStationDisruption(mixed $code)
 		{
 			return $this->requestGet("reisinformatie-api/api/v2/disruptions/station/" . $code);
 		}
@@ -270,7 +270,7 @@
 		 * @param string $date (Optional) Datetime in RFC3339
 		 * @param string $lang (Optional) Language to translate in, note that not all messages are translated [nl|en]
 		 * @param string $product (Optional) Name / constant of product customer will use in travel, if omitted defaults to ROS
-		 * @param string $travelClass (Optional) First or second class travel [1|2]
+		 * @param string|integer $travelClass (Optional) First or second class travel [1|2]
 		 * @param string $discount (Optional) Discount name / constant
 		 * @param string $travelRequestType (Optional) With or without directions
 		 * 
@@ -279,7 +279,7 @@
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getTrip(string $ctxRecon, string $date = null, string $lang = null, string $product = null,
-			string $travelClass = null, string $discount = null, string $travelRequestType = null)
+			mixed $travelClass = null, string $discount = null, string $travelRequestType = null)
 		{
 			$params = array_filter(array(
 				"ctxRecon" => $ctxRecon,

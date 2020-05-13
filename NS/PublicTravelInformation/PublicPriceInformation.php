@@ -27,15 +27,15 @@
 		/**
 		 * Get price for a ticket from station A to B.
 		 *
-		 * @param string $from_station The from station stationcode, short name, middle name, long name, UIC code or varcode
-		 * @param string $to_station The to station stationcode, short name, middle name, long name, UIC code or varcode
+		 * @param string|integer $from_station The from station stationcode, short name, middle name, long name, UIC code or varcode
+		 * @param string|integer $to_station The to station stationcode, short name, middle name, long name, UIC code or varcode
 		 * @param string $date (RFC3339 yyyy-MM-dd)
 		 * 
 		 * @return object
 		 *
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getPrices(string $fromStation, string $toStation, string $date = null)
+		public function getPrices(mixed $fromStation, mixed $toStation, string $date = null)
 		{
 			$params = array(
 				"fromStation" => $fromStation,

@@ -79,14 +79,14 @@
 		 * Perform an autosuggest.
 		 *
 		 * @param string $q Full text search string
-		 * @param string $type (Optional) Comma seperated list of search types
-		 * @param null $session_token (Optional) A session token, used to group the query and selection phases of a user autocomplete search into a discrete session for billing purposes
+		 * @param string $type (Optional) Comma seperated list of place types
+		 * @param string $session_token (Optional) A session token, used to group the query and selection phases of a user autocomplete search into a discrete session for billing purposes
 		 * 
 		 * @return object
 		 *
 		 * @throws nl\JKCTech\NS\Exception\NSRequestException
 		 */
-		public function autoSuggest(string $q, string $type = null, $session_token = null)
+		public function autoSuggest(string $q, string $type = null, string $session_token = null)
 		{
 			$params = array_filter(array(
 				"q" => $q,

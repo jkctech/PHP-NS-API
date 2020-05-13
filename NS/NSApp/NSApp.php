@@ -21,7 +21,10 @@
 		 */
 		public function __construct(string $api_key)
 		{
+			$this->Places = new Places($api_key);
 			$this->TravelInformation = new TravelInformation($api_key);
+			$this->Railmap = new Railmap($api_key);
+			$this->VirtualTrain = new VirtualTrain($api_key);
 		}
 	}
 ?>
