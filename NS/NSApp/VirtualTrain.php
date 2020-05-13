@@ -1,20 +1,27 @@
 <?php
 	/**
-	 * NS (Nederlandse Spoorwegen)
+	 * Nederlandse Spoorwegen (NS) API
 	 *
-	 * VirtualTrain
-	 * https://apiportal.ns.nl/docs/services/virtual-train-api
+	 * This file is inteded to work with the NS client API providing various insights in the Dutch (and international) railways.
+	 * https://github.com/jkctech/PHP-NS-API
 	 * 
-	 * Author: JKCTech
-	 * Date: 13-07-2020
+	 * Virtual Train API
 	 * 
+	 * @author JKCTech
 	 */
 
-	namespace nl\JKCTech\NS;
+	namespace JKCTech\NS;
 
+	/**
+	 * VirtualTrain
+	 *
+	 * @link https://apiportal.ns.nl/docs/services/virtual-train-api
+	 */
 	Class VirtualTrain extends NSBaseSender
 	{
 		/**
+		 * Use your API key for this specific endpoint.
+		 *
 		 * @param string $api_key Your NS-App API Key
 		 * 
 		 * @return void
@@ -27,11 +34,14 @@
 		/**
 		 * Informations about all shortened trains.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getAll
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getAll_1
+		 *
 		 * @param bool $withCrowdForecast (Optional) Return extra crowd forecast data (Using endpoint V2)
 		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getAllShortenedTrains(bool $withCrowdForecast = false)
 		{
@@ -44,11 +54,14 @@
 		/**
 		 * Get train image.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getImage
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getImageFromSubdirectory
+		 *
 		 * @param string $image Path of the image including it's extension and optional subdirectory
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getTrainImage(string $image)
 		{
@@ -58,9 +71,11 @@
 		/**
 		 * Get a VERY BIG list of all stops.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getStops
+		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getAllStops()
 		{
@@ -70,11 +85,13 @@
 		/**
 		 * Get information about a specific stop.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getStop
+		 *
 		 * @param string $stopCode Specific stopcode
 		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getStop(string $stopCode)
 		{
@@ -84,14 +101,16 @@
 		/**
 		 * Get information about a ridenumber being shortened at a specific station.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInfo
+		 *
 		 * @param string|integer $ridenumber Ridenumber
 		 * @param string $station Station abbreviation code
 		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getShortenedTrain(mixed $ridenumber, string $station)
+		public function getShortenedTrain($ridenumber, string $station)
 		{
 			return $this->requestGet(sprintf("virtual-train-api/api/v1/ingekort/%s/%s", $ridenumber, $station));
 		}
@@ -99,13 +118,15 @@
 		/**
 		 * Get crowd forecast at a specific ridenumber.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInfo_1
+		 *
 		 * @param string|integer $ridenumber Ridenumber
 		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getCrowdForecast(mixed $ridenumber)
+		public function getCrowdForecast($ridenumber)
 		{
 			return $this->requestGet("virtual-train-api/api/v1/prognose/" . $ridenumber);
 		}
@@ -113,27 +134,33 @@
 		/**
 		 * Convert a materialnumber to a ridenumber.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie
+		 *
 		 * @param string|integer $materialnumber Materialnumber
 		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function materialnumberToRidenumber(mixed $materialnumber)
+		public function materialnumberToRidenumber($materialnumber)
 		{
 			return $this->requestGet("virtual-train-api/api/v1/ritnummer/" . $materialnumber);
 		}
 
 		/**
+		 * Get information about a specific train.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie_1
+		 *
 		 * @param string|integer $ridenumber
 		 * @param string $features (Optional) Comma seperated list of features [zitplaats|platformitems|cta|drukte]
 		 * @param string $dateTime (Optional) Datetime in RFC3339
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getTrainInformation(mixed $ridenumber, string $features = null, string $dateTime = null)
+		public function getTrainInformation($ridenumber, string $features = null, string $dateTime = null)
 		{
 			$params = array_filter(array(
 				"features" => $features,
@@ -144,6 +171,10 @@
 		}
 
 		/**
+		 * Get all trains with optional search parameters.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie_2
+		 *
 		 * @param string $ids (Optional) Comma seperated list of train id's, note that all of the following parameters only work in conjuction with the id parameter
 		 * @param string $stations (Optional) Comma seperated list of Station codes
 		 * @param string $features (Optional) Comma seperated list of features [zitplaats|platformitems|cta|drukte|druktev2]
@@ -152,7 +183,7 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getAllTrains(string $ids = null, string $stations = null, string $features = null, string $dateTime = null, bool $all = null)
 		{
@@ -168,16 +199,20 @@
 		}
 
 		/**
-		 * @param mixed $ridenumber Ridenumber
+		 * Get traindata of train at specific station.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie_3
+		 *
+		 * @param $ridenumber Ridenumber
 		 * @param string $station Station abbreviation code
 		 * @param string $features (Optional) Comma seperated list of features [zitplaats|platformitems|cta|drukte]
 		 * @param string $dateTime (Optional) Datetime in RFC3339
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getTrainAtStation(mixed $ridenumber, string $station, string $features = null, string $dateTime = null)
+		public function getTrainAtStation($ridenumber, string $station, string $features = null, string $dateTime = null)
 		{
 			$params = array_filter(array(
 				"features" => $features,
@@ -190,6 +225,8 @@
 		/**
 		 * Get information about all vehicles.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getVehicles
+		 *
 		 * @param string|float $lat (Optional) Latitude
 		 * @param string|float $lng (Optional) Longitude
 		 * @param string|int $radius (Optional) Radius in meters
@@ -198,9 +235,9 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getVehicles(mixed $lat = null, mixed $lng = null, mixed $radius = null, mixed $limit = null, string $features = null)
+		public function getVehicles($lat = null, $lng = null, $radius = null, $limit = null, string $features = null)
 		{
 			$params = array_filter(array(
 				"lat" => $lat,

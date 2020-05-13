@@ -1,20 +1,27 @@
 <?php
 	/**
-	 * NS (Nederlandse Spoorwegen)
+	 * Nederlandse Spoorwegen (NS) API
 	 *
-	 * NSApp
-	 * https://apiportal.ns.nl/products/NsApp
+	 * This file is inteded to work with the NS client API providing various insights in the Dutch (and international) railways.
+	 * https://github.com/jkctech/PHP-NS-API
 	 * 
-	 * Author: JKCTech
-	 * Date: 12-07-2020
+	 * NS-APP Endpoint section
 	 * 
+	 * @author JKCTech
 	 */
 
-	namespace nl\JKCTech\NS;
+	namespace JKCTech\NS;
 
+	/**
+	 * NSApp
+	 *
+	 * @link https://apiportal.ns.nl/products/NsApp
+	 */
 	Class NSApp
 	{
 		/**
+		 * Use your API key for this specific endpoint.
+		 *
 		 * @param string $api_key
 		 * 
 		 * @return void

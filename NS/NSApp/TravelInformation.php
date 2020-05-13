@@ -1,20 +1,27 @@
 <?php
 	/**
-	 * NS (Nederlandse Spoorwegen)
+	 * Nederlandse Spoorwegen (NS) API
 	 *
-	 * TravelInformation
-	 * https://apiportal.ns.nl/docs/services/reisinformatie-api/
+	 * This file is inteded to work with the NS client API providing various insights in the Dutch (and international) railways.
+	 * https://github.com/jkctech/PHP-NS-API
 	 * 
-	 * Author: JKCTech
-	 * Date: 12-07-2020
+	 * Travel Information API
 	 * 
+	 * @author JKCTech
 	 */
 
-	namespace nl\JKCTech\NS;
+	namespace JKCTech\NS;
 
+	/**
+	 * TravelInformation
+	 *
+	 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/
+	 */
 	Class TravelInformation extends NSBaseSender
 	{
 		/**
+		 * Use your API key for this specific endpoint.
+		 *
 		 * @param string $api_key Your NS-App API Key
 		 * 
 		 * @return void
@@ -27,9 +34,11 @@
 		/**
 		 * Get all stations known in the NS network.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getAllStations
+		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getAllStations()
 		{
@@ -38,7 +47,10 @@
 
 		/**
 		 * Get arrivals at a given station.
+		 * 
 		 * Either a station abbreviation or a UIC code is required. 
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getArrivals
 		 *
 		 * @param string $station Station by NS abbreviation/code (e.g. hdr or asd)
 		 * @param string|integer $uicCode Station by UIC code (84xxxxx)
@@ -49,9 +61,9 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getArrivals(string $station = null, mixed $uicCode = null, string $dateTime = null, mixed $maxJourneys = null, string $lang = null, string $source = null)
+		public function getArrivals(string $station = null, $uicCode = null, string $dateTime = null, $maxJourneys = null, string $lang = null, string $source = null)
 		{
 			$params = array_filter(array(
 				"station" => $station,
@@ -68,11 +80,13 @@
 		/**
 		 * Get list of global calamities.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getCalamities
+		 *
 		 * @param string $lang (Optional) Language to translate in, note that not all messages are translated [nl|en]
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getCalamities(string $lang = null)
 		{
@@ -85,7 +99,10 @@
 
 		/**
 		 * Get departures at a given station.
+		 * 
 		 * Either a station abbreviation or a UIC code is required. 
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDepartures
 		 *
 		 * @param string $station Station by NS abbreviation/code (e.g. hdr or asd)
 		 * @param string|integer $uicCode Station by UIC code (84xxxxx)
@@ -96,9 +113,9 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getDepartures(string $station = null, mixed $uicCode = null, string $dateTime = null, mixed $maxJourneys = null, string $lang = null, string $source = null)
+		public function getDepartures(string $station = null, $uicCode = null, string $dateTime = null, $maxJourneys = null, string $lang = null, string $source = null)
 		{
 			$params = array_filter(array(
 				"station" => $station,
@@ -115,13 +132,15 @@
 		/**
 		 * Get global disruptions.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruptions
+		 *
 		 * @param bool $actual (Optional) Whether to only return disruptions within 2 hours of the request
 		 * @param string $type (Optional) If not present, both will be returned [storing|werkzaamheid]
 		 * @param string $lang (Optional) Language to translate in, note that not all messages are translated [nl|en]
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getDisruptions(bool $actual = null, string $type = null, string $lang = null)
 		{
@@ -136,12 +155,14 @@
 
 		/**
 		 * Get specific disruption by ID.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruption
 		 * 
 		 * @param string $id ID's can be found through getDisruptions()
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getDisruption(string $id)
 		{
@@ -150,7 +171,10 @@
 
 		/**
 		 * Get exitside for the given parameters.
+		 * 
 		 * Result will either be LEFT, RIGHT or UNKNOWN.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getExitSide
 		 *
 		 * @param string|integer $originUicCode Station by UIC code (84xxxxx)
 		 * @param string|integer $uicCode Station by UIC code (84xxxxx)
@@ -158,9 +182,9 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getExitSide(mixed $originUicCode, mixed $uicCode, mixed $track)
+		public function getExitSide($originUicCode, $uicCode, $track)
 		{
 			$params = array_filter(array(
 				"originUicCode" => $originUicCode,
@@ -173,6 +197,8 @@
 
 		/**
 		 * Get international pricing from station A to station B.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getInternationalPrice
 		 * 
 		 * @param string|integer $fromStation The from station stationcode, short name, middle name, long name, UIC code or varcode
 		 * @param string|integer $toStation The to station stationcode, short name, middle name, long name, UIC code or varcode
@@ -180,9 +206,9 @@
 		 * 
 		 * @return object
 		 * 
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getInternationalPrice(mixed $fromStation, mixed $toStation, string $plannedFromTime)
+		public function getInternationalPrice($fromStation, $toStation, string $plannedFromTime)
 		{
 			$params = array_filter(array(
 				"fromStation" => $fromStation,
@@ -195,7 +221,10 @@
 
 		/**
 		 * Get pricing from station A to station B.
+		 * 
 		 * Provide EITHER a CTXRecon or a toStation AND fromStation.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getPrice
 		 * 
 		 * @param string|integer $fromStation The from station stationcode, short name, middle name, long name, UIC code or varcode
 		 * @param string|integer $toStation The to station stationcode, short name, middle name, long name, UIC code or varcode
@@ -210,11 +239,11 @@
 		 * 
 		 * @return object
 		 * 
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getPrice(mixed $fromStation = null, mixed $toStation = null, string $ctxRecon = null,
-			string $plannedFromTime = null, string $plannedArrivalTime = null, mixed $travelClass = null, string $travelType = null,
-			mixed $adults = null, mixed $children = null, mixed $routeId = null)
+		public function getPrice($fromStation = null, $toStation = null, string $ctxRecon = null,
+			string $plannedFromTime = null, string $plannedArrivalTime = null, $travelClass = null, string $travelType = null,
+			$adults = null, $children = null, $routeId = null)
 		{
 			$params = array_filter(array(
 				"fromStation" => $fromStation,
@@ -235,26 +264,31 @@
 		/**
 		 * Get disruptions at a specific station.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getStationDisruption
+		 *
 		 * @param string|integer $code Stationcode or UICcode
 		 * 
 		 * @return object
 		 * 
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function getStationDisruption(mixed $code)
+		public function getStationDisruption($code)
 		{
 			return $this->requestGet("reisinformatie-api/api/v2/disruptions/station/" . $code);
 		}
 
 		/**
 		 * Plan a trip from station A to station B.
+		 * 
 		 * Due to the huge amount of possible parameters, an associative array with the parameters is used.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getTrips
 		 * 
 		 * @param array $params
 		 * 
 		 * @return object
 		 * 
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getTrips(array $params)
 		{
@@ -265,6 +299,8 @@
 
 		/**
 		 * Get information about a specific trip.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getTrip
 		 * 
 		 * @param string $ctxRecon CTXRecon string
 		 * @param string $date (Optional) Datetime in RFC3339
@@ -276,10 +312,10 @@
 		 * 
 		 * @return object
 		 * 
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getTrip(string $ctxRecon, string $date = null, string $lang = null, string $product = null,
-			mixed $travelClass = null, string $discount = null, string $travelRequestType = null)
+			$travelClass = null, string $discount = null, string $travelRequestType = null)
 		{
 			$params = array_filter(array(
 				"ctxRecon" => $ctxRecon,

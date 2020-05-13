@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/JKCTech.html">\JKCTech</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1524513543"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1524513543" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-745202009"></a>
+                                <a href="../namespaces/JKCTech.html" style="margin-left: 30px; padding-left: 0">JKCTech</a>
+            </div>
+            <div id="namespace-745202009" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1453358038"></a>
+                                <a href="../namespaces/JKCTech.NS.html" style="margin-left: 30px; padding-left: 0">NS</a>
+            </div>
+            <div id="namespace-1453358038" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-410126449"></a>
+                                <a href="../namespaces/JKCTech.NS.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-410126449" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JKCTech.NS.Exception.NSRequestException.html">NSRequestException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/JKCTech.NS.NSApp.html">NSApp</a></li>
+                                                    <li class="class"><a href="../classes/JKCTech.NS.NSBaseSender.html">NSBaseSender</a></li>
+                                                    <li class="class"><a href="../classes/JKCTech.NS.Places.html">Places</a></li>
+                                                    <li class="class"><a href="../classes/JKCTech.NS.PublicPriceInformation.html">PublicPriceInformation</a></li>
+                                                    <li class="class"><a href="../classes/JKCTech.NS.PublicTravelInformation.html">PublicTravelInformation</a></li>
+                                                    <li class="class"><a href="../classes/JKCTech.NS.Railmap.html">Railmap</a></li>
+                                                    <li class="class"><a href="../classes/JKCTech.NS.TravelInformation.html">TravelInformation</a></li>
+                                                    <li class="class"><a href="../classes/JKCTech.NS.VirtualTrain.html">VirtualTrain</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/JKCTech.NS.html">\JKCTech\NS</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\JKCTech\NS</small>TravelInformation</h1>
+                    <p><em>TravelInformation</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.NSBaseSender.html#method_requestGet" class="">requestGet()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getAllStations" class="">getAllStations()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getArrivals" class="">getArrivals()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getCalamities" class="">getCalamities()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getDepartures" class="">getDepartures()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getDisruptions" class="">getDisruptions()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getDisruption" class="">getDisruption()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getExitSide" class="">getExitSide()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getInternationalPrice" class="">getInternationalPrice()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getPrice" class="">getPrice()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getStationDisruption" class="">getStationDisruption()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getTrips" class="">getTrips()</a><br />
+                                                                    <a href="../classes/JKCTech.NS.TravelInformation.html#method_getTrip" class="">getTrip()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/JKCTech.NS.NSBaseSender.html#constant_API" class="">API</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/JKCTech.NS.NSBaseSender.html#property_api_key" class="">$api_key</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/NS.NSApp.TravelInformation.html"><div class="path-wrapper">NS/NSApp/TravelInformation.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/JKCTech.NS.NSBaseSender.html">\JKCTech\NS\NSBaseSender</a></div>
+                                                                                                    <div class="namespace-wrapper">\JKCTech\NS\TravelInformation</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                            <dt>See also</dt>
+                                                                                        <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/</span></a></dd>
+                                                    
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API" name="constant_API" class="anchor"></a>
+            <article id="constant_API" class="constant">
+                <h3 class="">API</h3>
+                <pre class="signature">API</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/JKCTech.NS.NSBaseSender.html"><div class="path-wrapper">\JKCTech\NS\NSBaseSender</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_api_key" name="property_api_key" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$api_key</h3>
+                <pre class="signature">$api_key : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; API key                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/JKCTech.NS.NSBaseSender.html"><div class="path-wrapper">\JKCTech\NS\NSBaseSender</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$api_key</span>) : void</pre>
+                <p><em>Use your API key for this specific endpoint.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$api_key </td>
+                                <td><p>Your NS-App API Key</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_requestGet" name="method_requestGet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">requestGet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">requestGet(string  <span class="argument">$endpoint</span>, array  <span class="argument">$params = array()</span>) : object</pre>
+                <p><em>Send properly formed requests to the NS API.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$endpoint </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$params </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/JKCTech.NS.NSBaseSender.html"><div class="path-wrapper">\JKCTech\NS\NSBaseSender</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAllStations" name="method_getAllStations" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAllStations()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAllStations() : object</pre>
+                <p><em>Get all stations known in the NS network.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getAllStations"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getAllStations</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getArrivals" name="method_getArrivals" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getArrivals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getArrivals(string  <span class="argument">$station = null</span>, string|integer  <span class="argument">$uicCode = null</span>, string  <span class="argument">$dateTime = null</span>, string|integer  <span class="argument">$maxJourneys = null</span>, string  <span class="argument">$lang = null</span>, string  <span class="argument">$source = null</span>) : object</pre>
+                <p><em>Get arrivals at a given station.</em></p>
+                <p>Either a station abbreviation or a UIC code is required.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$station </td>
+                                <td><p>Station by NS abbreviation/code (e.g. hdr or asd)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$uicCode </td>
+                                <td><p>Station by UIC code (84xxxxx)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$dateTime </td>
+                                <td><p>(Optional) Datetime in RFC3339</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$maxJourneys </td>
+                                <td><p>(Optional) Number of departures or arrivals to return</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$lang </td>
+                                <td><p>(Optional) Language to translate in, note that not all messages are translated [nl|en]</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$source </td>
+                                <td><p>(Optional) Forces to use a certain source</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getArrivals"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getArrivals</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCalamities" name="method_getCalamities" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCalamities()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCalamities(string  <span class="argument">$lang = null</span>) : object</pre>
+                <p><em>Get list of global calamities.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$lang </td>
+                                <td><p>(Optional) Language to translate in, note that not all messages are translated [nl|en]</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getCalamities"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getCalamities</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDepartures" name="method_getDepartures" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDepartures()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDepartures(string  <span class="argument">$station = null</span>, string|integer  <span class="argument">$uicCode = null</span>, string  <span class="argument">$dateTime = null</span>, string|integer  <span class="argument">$maxJourneys = null</span>, string  <span class="argument">$lang = null</span>, string  <span class="argument">$source = null</span>) : object</pre>
+                <p><em>Get departures at a given station.</em></p>
+                <p>Either a station abbreviation or a UIC code is required.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$station </td>
+                                <td><p>Station by NS abbreviation/code (e.g. hdr or asd)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$uicCode </td>
+                                <td><p>Station by UIC code (84xxxxx)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$dateTime </td>
+                                <td><p>(Optional) Datetime in RFC3339</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$maxJourneys </td>
+                                <td><p>(Optional) Number of departures or arrivals to return</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$lang </td>
+                                <td><p>(Optional) Language to translate in, note that not all messages are translated [nl|en]</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$source </td>
+                                <td><p>(Optional) Forces to use a certain source</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDepartures"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDepartures</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDisruptions" name="method_getDisruptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDisruptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDisruptions(boolean  <span class="argument">$actual = null</span>, string  <span class="argument">$type = null</span>, string  <span class="argument">$lang = null</span>) : object</pre>
+                <p><em>Get global disruptions.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$actual </td>
+                                <td><p>(Optional) Whether to only return disruptions within 2 hours of the request</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type </td>
+                                <td><p>(Optional) If not present, both will be returned [storing|werkzaamheid]</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$lang </td>
+                                <td><p>(Optional) Language to translate in, note that not all messages are translated [nl|en]</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruptions"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruptions</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDisruption" name="method_getDisruption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDisruption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDisruption(string  <span class="argument">$id</span>) : object</pre>
+                <p><em>Get specific disruption by ID.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$id </td>
+                                <td><p>ID's can be found through getDisruptions()</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruption"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruption</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getExitSide" name="method_getExitSide" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getExitSide()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getExitSide(string|integer  <span class="argument">$originUicCode</span>, string|integer  <span class="argument">$uicCode</span>, string|integer  <span class="argument">$track</span>) : object</pre>
+                <p><em>Get exitside for the given parameters.</em></p>
+                <p>Result will either be LEFT, RIGHT or UNKNOWN.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$originUicCode </td>
+                                <td><p>Station by UIC code (84xxxxx)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$uicCode </td>
+                                <td><p>Station by UIC code (84xxxxx)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$track </td>
+                                <td><p>Tracknumber</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getExitSide"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getExitSide</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInternationalPrice" name="method_getInternationalPrice" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInternationalPrice()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInternationalPrice(string|integer  <span class="argument">$fromStation</span>, string|integer  <span class="argument">$toStation</span>, string  <span class="argument">$plannedFromTime</span>) : object</pre>
+                <p><em>Get international pricing from station A to station B.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$fromStation </td>
+                                <td><p>The from station stationcode, short name, middle name, long name, UIC code or varcode</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$toStation </td>
+                                <td><p>The to station stationcode, short name, middle name, long name, UIC code or varcode</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$plannedFromTime </td>
+                                <td><p>Datetime in RFC3339</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getInternationalPrice"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getInternationalPrice</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPrice" name="method_getPrice" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPrice()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPrice(string|integer  <span class="argument">$fromStation = null</span>, string|integer  <span class="argument">$toStation = null</span>, string  <span class="argument">$ctxRecon = null</span>, string  <span class="argument">$plannedFromTime = null</span>, string  <span class="argument">$plannedArrivalTime = null</span>, string|integer  <span class="argument">$travelClass = null</span>, string  <span class="argument">$travelType = null</span>, string|integer  <span class="argument">$adults = null</span>, string|integer  <span class="argument">$children = null</span>, string|integer  <span class="argument">$routeId = null</span>) : object</pre>
+                <p><em>Get pricing from station A to station B.</em></p>
+                <p>Provide EITHER a CTXRecon or a toStation AND fromStation.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$fromStation </td>
+                                <td><p>The from station stationcode, short name, middle name, long name, UIC code or varcode</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$toStation </td>
+                                <td><p>The to station stationcode, short name, middle name, long name, UIC code or varcode</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$ctxRecon </td>
+                                <td><p>CTXRecon string</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$plannedFromTime </td>
+                                <td><p>(Optional) Planned departure time in RFC3339</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$plannedArrivalTime </td>
+                                <td><p>(Optional) Planned arrival time in RFC3339</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$travelClass </td>
+                                <td><p>(Optional) First or second class travel [1|2]</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$travelType </td>
+                                <td><p>(Optional) [single|return]</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$adults </td>
+                                <td><p>(Optional) Number of adults to take into account</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$children </td>
+                                <td><p>(Optional) Number of children to take into account</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$routeId </td>
+                                <td><p>(Optional) Filter trip by routeId</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getPrice"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getPrice</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getStationDisruption" name="method_getStationDisruption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getStationDisruption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getStationDisruption(string|integer  <span class="argument">$code</span>) : object</pre>
+                <p><em>Get disruptions at a specific station.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$code </td>
+                                <td><p>Stationcode or UICcode</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getStationDisruption"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getStationDisruption</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTrips" name="method_getTrips" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTrips()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTrips(array  <span class="argument">$params</span>) : object</pre>
+                <p><em>Plan a trip from station A to station B.</em></p>
+                <p>Due to the huge amount of possible parameters, an associative array with the parameters is used.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$params </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getTrips"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getTrips</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTrip" name="method_getTrip" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTrip()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTrip(string  <span class="argument">$ctxRecon</span>, string  <span class="argument">$date = null</span>, string  <span class="argument">$lang = null</span>, string  <span class="argument">$product = null</span>, string|integer  <span class="argument">$travelClass = null</span>, string  <span class="argument">$discount = null</span>, string  <span class="argument">$travelRequestType = null</span>) : object</pre>
+                <p><em>Get information about a specific trip.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$ctxRecon </td>
+                                <td><p>CTXRecon string</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$date </td>
+                                <td><p>(Optional) Datetime in RFC3339</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$lang </td>
+                                <td><p>(Optional) Language to translate in, note that not all messages are translated [nl|en]</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$product </td>
+                                <td><p>(Optional) Name / constant of product customer will use in travel, if omitted defaults to ROS</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|integer</td>
+                                <td>$travelClass </td>
+                                <td><p>(Optional) First or second class travel [1|2]</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$discount </td>
+                                <td><p>(Optional) Discount name / constant</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$travelRequestType </td>
+                                <td><p>(Optional) With or without directions</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\JKCTech\NS\JKCTech\NS\Exception\NSRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getTrip"><span class="namespace-wrapper">https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getTrip</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">TravelInformation.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/NS/NSApp/TravelInformation.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/JKCTech.html">\JKCTech</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 13th, 2020 at 23:30.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

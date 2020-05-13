@@ -1,20 +1,27 @@
 <?php
 	/**
-	 * NS (Nederlandse Spoorwegen)
+	 * Nederlandse Spoorwegen (NS) API
 	 *
-	 * Railmap
-	 * https://apiportal.ns.nl/docs/services/Spoorkaart-api
+	 * This file is inteded to work with the NS client API providing various insights in the Dutch (and international) railways.
+	 * https://github.com/jkctech/PHP-NS-API
 	 * 
-	 * Author: JKCTech
-	 * Date: 13-07-2020
+	 * Railmap API
 	 * 
+	 * @author JKCTech
 	 */
 
-	namespace nl\JKCTech\NS;
+	namespace JKCTech\NS;
 
+	/**
+	 * Railmap
+	 *
+	 * @link https://apiportal.ns.nl/docs/services/Spoorkaart-api
+	 */
 	Class Railmap extends NSBaseSender
 	{
 		/**
+		 * Use your API key for this specific endpoint.
+		 *
 		 * @param string $api_key Your NS-App API Key
 		 * 
 		 * @return void
@@ -27,9 +34,11 @@
 		/**
 		 * Get global railway map.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getSpoorkaart
+		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getRailmap()
 		{
@@ -38,7 +47,10 @@
 
 		/**
 		 * Get global disruptions.
+		 * 
 		 * Optional with user defined timeframe
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getStoringen
 		 *
 		 * @param string $startDate (Optional) Datetime in RFC3339
 		 * @param string $endDate (Optional) Datetime in RFC3339
@@ -46,7 +58,7 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getDisruptions(string $startDate = null, string $endDate = null, bool $actual = null)
 		{
@@ -61,14 +73,17 @@
 
 		/**
 		 * Get specific disruption.
-		 * Either as json or geojson object.
+		 * 
+		 * Either as json or geojson object
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getStoring
 		 *
 		 * @param string $id Disruption ID
 		 * @param string $extension Output type [.json|.geojson]
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getDisruption(string $id, string $extension)
 		{
@@ -77,7 +92,10 @@
 
 		/**
 		 * Get global disruptions with specific extension.
+		 * 
 		 * Optional with user defined timeframe
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getStoringenWithExtension
 		 *
 		 * @param string $extension Output type [.json|.geojson]
 		 * @param string $startDate (Optional) Datetime in RFC3339
@@ -86,7 +104,7 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getDisruptionsWithExtension(string $extension, string $startDate = null, string $endDate = null, bool $actual = null)
 		{
@@ -100,6 +118,10 @@
 		}
 
 		/**
+		 * Get trainroute.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getTraject
+		 * 
 		 * @param string $extension Output type [.json|.geojson]
 		 * @param string $stations (Optional) Comma seperated list of stations
 		 * 

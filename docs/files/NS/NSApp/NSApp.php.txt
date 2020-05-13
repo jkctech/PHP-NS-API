@@ -1,0 +1,37 @@
+<?php
+	/**
+	 * Nederlandse Spoorwegen (NS) API
+	 *
+	 * This file is inteded to work with the NS client API providing various insights in the Dutch (and international) railways.
+	 * https://github.com/jkctech/PHP-NS-API
+	 * 
+	 * NS-APP Endpoint section
+	 * 
+	 * @author JKCTech
+	 */
+
+	namespace JKCTech\NS;
+
+	/**
+	 * NSApp
+	 *
+	 * @link https://apiportal.ns.nl/products/NsApp
+	 */
+	Class NSApp
+	{
+		/**
+		 * Use your API key for this specific endpoint.
+		 *
+		 * @param string $api_key
+		 * 
+		 * @return void
+		 */
+		public function __construct(string $api_key)
+		{
+			$this->Places = new Places($api_key);
+			$this->TravelInformation = new TravelInformation($api_key);
+			$this->Railmap = new Railmap($api_key);
+			$this->VirtualTrain = new VirtualTrain($api_key);
+		}
+	}
+?>

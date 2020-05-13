@@ -1,21 +1,34 @@
 <?php
 	/**
-	 * NS (Nederlandse Spoorwegen)
+	 * Nederlandse Spoorwegen (NS) API
+	 *
+	 * This file is inteded to work with the NS client API providing various insights in the Dutch (and international) railways.
+	 * https://github.com/jkctech/PHP-NS-API
 	 * 
-	 * Author: JKCTech
-	 * Date: 11-07-2020
+	 * Base sender
 	 * 
+	 * @author JKCTech
 	 */
 
-	namespace nl\JKCTech\NS;
+	namespace JKCTech\NS;
 
+	/**
+	 * Nederlandse Spoorwegen (NS) API
+	 *
+	 * @link https://apiportal.ns.nl/
+	 */
 	Class NSBaseSender
 	{
 		const API = "https://gateway.apiportal.ns.nl/";
 
+		/**
+		 * @var string API key
+		 */
 		private $api_key;
 
 		/**
+		 * Use your API key for this specific endpoint.
+		 *
 		 * @param string $api_key
 		 * 
 		 * @return void
@@ -33,7 +46,7 @@
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function requestGet(string $endpoint, array $params = array())
 		{

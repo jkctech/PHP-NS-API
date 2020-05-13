@@ -1,20 +1,29 @@
 <?php
 	/**
-	 * NS (Nederlandse Spoorwegen)
+	 * Nederlandse Spoorwegen (NS) API
 	 *
-	 * Places
-	 * https://apiportal.ns.nl/docs/services/Places-API/
+	 * This file is inteded to work with the NS client API providing various insights in the Dutch (and international) railways.
+	 * https://github.com/jkctech/PHP-NS-API
 	 * 
-	 * Author: JKCTech
-	 * Date: 13-07-2020
+	 * Places API
 	 * 
+	 * @author JKCTech
 	 */
 
-	namespace nl\JKCTech\NS;
+	namespace JKCTech\NS;
 
+	/**
+	 * Places
+	 *
+	 * @link https://apiportal.ns.nl/docs/services/Places-API/
+	 */
 	Class Places extends NSBaseSender
 	{
 		/**
+		 * Use your API key for this specific endpoint.
+		 *
+		 * @link 
+		 *
 		 * @param string $api_key Your NS-App API Key
 		 * 
 		 * @return void
@@ -26,13 +35,16 @@
 
 		/**
 		 * The syntax and meaning of this endpoint are unknown.
+		 * 
 		 * Custom parameters can be set.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/getIncorrectlyFilledLocations
 		 *
 		 * @param array $params (Optional) Associative array with custom paramters
 		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getIncorrectlyFilledLocations(array $params = array())
 		{
@@ -43,13 +55,16 @@
 
 		/**
 		 * Return a list of places according to the given parameters.
+		 * 
 		 * Due to the huge amount of possible parameters, an associative array with the parameters is used.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/places
 		 * 
 		 * @param array $params
 		 * 
 		 * @return object
 		 * 
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function listPlaces(array $params)
 		{
@@ -60,13 +75,16 @@
 
 		/**
 		 * The syntax and meaning of this endpoint are unknown.
+		 * 
 		 * Custom parameters can be set.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/mailUnreliable
 		 *
 		 * @param array $params (Optional) Associative array with custom paramters
 		 *
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function mailUnreliable(array $params = array())
 		{
@@ -78,13 +96,15 @@
 		/**
 		 * Perform an autosuggest.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/autoSuggest
+		 *
 		 * @param string $q Full text search string
 		 * @param string $type (Optional) Comma seperated list of place types
 		 * @param string $session_token (Optional) A session token, used to group the query and selection phases of a user autocomplete search into a discrete session for billing purposes
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function autoSuggest(string $q, string $type = null, string $session_token = null)
 		{
@@ -101,12 +121,14 @@
 		/**
 		 * Get a specific autosuggest resource.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/autoSuggestForType
+		 *
 		 * @param string $type
 		 * @param string $id
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function autoSuggestSpecific(string $type, string $id)
 		{
@@ -116,11 +138,13 @@
 		/**
 		 * Get information about ovFiets (Public bikes) locations and availability.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/beschikbaarheid
+		 *
 		 * @param string $station_code (Optional) Station abbreviation code to limit the information
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function ovFiets(string $station_code = null)
 		{
@@ -134,13 +158,15 @@
 		/**
 		 * Get a specific place resource.
 		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/placesForType
+		 *
 		 * @param string $type Type of place
 		 * @param string $id ID of place
 		 * @param string $lang (Optional) Language to translate in, note that not all messages are translated [nl|en]
 		 * 
 		 * @return object
 		 *
-		 * @throws nl\JKCTech\NS\Exception\NSRequestException
+		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
 		public function getPlace(string $type, string $id, string $lang = null)
 		{
@@ -153,6 +179,8 @@
 
 		/**
 		 * Get place images.
+		 *
+		 * @link https://apiportal.ns.nl/docs/services/Places-API/operations/image
 		 *
 		 * @param string $type Type of place
 		 * @param string $resource Resource you are trying to access

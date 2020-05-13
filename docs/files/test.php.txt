@@ -1,0 +1,19 @@
+<?php
+	session_start();
+	require_once(__DIR__ . '/NS/autoload.php');
+
+	use JKCTech\NS\PublicTravelInformation;
+	use JKCTech\NS\NSApp;
+
+	$pti = new PublicTravelInformation("e7f91ac1b36a422d9780ab5dfd32ba4d");
+	$nsa = new NSApp("f60a19a4d53e41999c5af24e355ed437");
+	
+	// $ppi = $pti->PublicPriceInformation;
+	// print_r($ppi->getPrices("hdr", "asd"));
+	
+
+	//print_r($nsa->TravelInformation->getArrivalsByName("hdr", "2020-05-14T12:00:00+0200"));
+	//print_r($nsa->TravelInformation->getDisruption("88443c52-d650-4b0d-a917-0f1f9b988f2e"));
+	//print_r($nsa->TravelInformation->getExitSide("8400303", "8400302", 2));
+	print_r($nsa->TravelInformation->getInternationalPrice("hdr", "asd", "14-05-2020"));
+?>
