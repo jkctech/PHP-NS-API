@@ -1,0 +1,266 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NS.nl-Public-Price-Information",
+    "version": "1.0",
+    "description": "Public API to retrieve prices for specific journeys"
+  },
+  "host": "gateway.apiportal.ns.nl",
+  "basePath": "/public-prijsinformatie",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
+    },
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/prices": {
+      "get": {
+        "operationId": "getPrices",
+        "summary": "Returns a list of price options for the requested trip.",
+        "parameters": [
+          {
+            "name": "fromStation",
+            "in": "query",
+            "description": "The from station stationcode, short name, middle name, long name, UIC code or varcode",
+            "type": "string"
+          },
+          {
+            "name": "toStation",
+            "in": "query",
+            "description": "The to station stationcode, short name, middle name, long name, UIC code or varcode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FixedPricesResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PricesResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "prices": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PriceContainer"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FreeTravelResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PricesResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "prices": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PriceContainer"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MultiRouteResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PricesResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "routeIndication": {
+              "type": "string",
+              "description": "The station code of the route's via station"
+            },
+            "totalPrices": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PriceContainer"
+              }
+            },
+            "trajecten": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrajectResponse"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PriceContainer": {
+      "type": "object",
+      "properties": {
+        "classType": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "FIRST",
+            "SECOND"
+          ]
+        },
+        "discountType": {
+          "type": "string",
+          "enum": [
+            "FORTY_PERCENT",
+            "TWENTY_PERCENT",
+            "FIP_LL",
+            "NONE"
+          ]
+        },
+        "productType": {
+          "type": "string",
+          "enum": [
+            "SINGLE_FARE",
+            "RETURN_FARE",
+            "SINGLE_FARE_PAPER_TICKET",
+            "RETURN_FARE_PAPER_TICKET",
+            "SINGLE_FARE_SINGLE_USE_OV_CHIPKAART",
+            "RETURN_FARE_SINGLE_USE_OV_CHIPKAART",
+            "TRAJECTVRIJ_NSBUSINESSKAART",
+            "TRAJECTVRIJ_JAAR",
+            "TRAJECTVRIJ_MAAND",
+            "RAILRUNNER",
+            "SUPPLEMENT_SINGLE_USE_OV_CHIPKAART",
+            "SUPPLEMENT_ICE_INTERNATIONAL",
+            "SUPPLEMENT_INTERCITY_DIRECT"
+          ]
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "supplements": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "PricesResponse": {
+      "type": "object",
+      "discriminator": "type",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "FIXED_PRICE",
+            "ROUTE_WITH_INDICATION",
+            "FREE_TRAVEL",
+            "ROUTE_WITHOUT_OPTIONS"
+          ]
+        },
+        "tariefEenheden": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "PublicApiResponse": {
+      "type": "object",
+      "properties": {
+        "priceOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PricesResponse"
+          }
+        }
+      }
+    },
+    "SingleRouteReponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PricesResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "transporter": {
+              "type": "string"
+            },
+            "from": {
+              "type": "string"
+            },
+            "to": {
+              "type": "string"
+            },
+            "totalPrices": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PriceContainer"
+              }
+            },
+            "trajecten": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TrajectResponse"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "TrajectResponse": {
+      "type": "object",
+      "properties": {
+        "transporter": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PriceContainer"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "multiple-prices-api",
+      "description": "Multiple Prices Api"
+    }
+  ]
+}
