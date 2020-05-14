@@ -48,7 +48,7 @@
 		 *
 		 * @throws JKCTech\NS\Exception\NSRequestException
 		 */
-		public function requestGet(string $endpoint, array $params = array())
+		public function requestGet(string $endpoint, array $params = null)
 		{
 			$ch = curl_init();
 			$url = self::API . $endpoint;
